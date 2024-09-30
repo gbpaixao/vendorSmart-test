@@ -3,13 +3,19 @@ import { LocationDAO } from "../resources/LocationDAO";
 import { ServiceCategoryDAO } from "../resources/ServiceCategoryDAO";
 import { VendorServiceCategory } from "../types/VendorServiceCategory";
 
+type Input = {
+  name: string,
+  locationId: number,
+  serviceCategories: { id: number, compliant: boolean }[]
+}
+
 export class CreateVendor {
   constructor(
     private readonly locationDAO: LocationDAO,
     private readonly serviceCategoryDAO: ServiceCategoryDAO,
   ) { }
 
-  execute(name: string, locationId: number, serviceCategoriesInput: { id: number, compliant: boolean }[]) {
+  execute({ name, locationId, serviceCategories: serviceCategoriesInput }: Input) {
     const location = this.locationDAO.findLocationById(locationId);
     if (!location) throw new Error('Location does not exist')
     const serviceCategories: VendorServiceCategory[] = serviceCategoriesInput.map((category) => {

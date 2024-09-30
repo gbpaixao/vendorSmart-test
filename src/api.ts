@@ -23,7 +23,7 @@ app.post('/create-job', function (req, res) {
   const { name, locationId, serviceCategoryId } = req.body
   // error handling
   const createJob = new CreateJob(locationDAO, serviceCategoryDAO)
-  const job = createJob.execute(name, locationId, serviceCategoryId)
+  const job = createJob.execute({ name, locationId, serviceCategoryId })
   jobs.push(job)
   console.log('jobs', jobs)
   res.status(200).json(job)
@@ -33,7 +33,7 @@ app.post('/create-vendor', function (req, res) {
   const { name, locationId, serviceCategories } = req.body
   // error handling
   const createVendor = new CreateVendor(locationDAO, serviceCategoryDAO)
-  const vendor = createVendor.execute(name, locationId, serviceCategories)
+  const vendor = createVendor.execute({ name, locationId, serviceCategories })
   vendors.push(vendor)
   console.log('vendors', vendors)
   res.status(200).json(vendor)
