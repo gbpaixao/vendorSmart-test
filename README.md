@@ -74,7 +74,6 @@ To use the API, you can make requests on the following routes:
 ### Create Job (authenticated)
 Endpoint: `http://localhost:3000/create-job`
 
-Explanation
 ```ts
 // body
 {
@@ -83,11 +82,11 @@ Explanation
   "serviceCategoryId": <number>
 }  
 ```
+An authenticated endpoint to create a job.
 
 ### Create Vendor (authenticated)
 Endpoint: `http://localhost:3000/create-vendor`
 
-Explanation
 ```ts
 // body
 {
@@ -99,21 +98,26 @@ Explanation
   }]
 }
 ```
+An authenticated endpoint to create a vendor;
 
-### Find Reachable Vendors (authenticated)
+### Find Vendors For Job (authenticated)
 Endpoint: `http://localhost:3000/find-vendors-for-job?jobId={jobId}`
 
-Explanation
+An authenticated endpoint that returns the potential vendors for a given job;
 
 
 ### Find Reachable Vendors 
 Endpoint: `http://localhost:3000/get-reachable-vendors?locationId={locationId}&serviceCategoryId={serviceCategoryId}`
 
-Explanation
+A public endpoint that returns total vendors, number of compliant vendors, and number of not compliant vendors. All for a given job details (service category, location);
 
 
 ## Improvements
 
-Write what I would improve here:
-I would document the API using Swagger;
-I would move the authentication values to environment variables;
+API - I would document the API using Swagger. That way, all developers and API users would know exactly what to expect from the endpoints;
+
+Environment variables - I would move the authentication values to environment variables. That way, the authentication secrets would stay a secret.
+
+Database - I would use a database to store the data, instead of a file. It could be a SQL database, since there are some relationships between the data;
+
+Tests - I don't think there is a need of testing the API even further, because the application itself (domain and usecases) are tested. The scenario would be different if there were expected status values and specific responses.
