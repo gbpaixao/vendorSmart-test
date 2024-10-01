@@ -1,4 +1,4 @@
-import { LocationMemoryRepository, ServiceCategoryMemoryRepository } from "../../src/resources"
+import { LocationMemoryRepository, ServiceCategoryMemoryRepository, VendorMemoryRepository } from "../../src/resources"
 import { CreateVendor } from "../../src/usecases"
 
 describe('CreateVendor usecase', () => {
@@ -11,9 +11,10 @@ describe('CreateVendor usecase', () => {
         compliant: true
       }]
     }
-    const serviceCategoryDAO = new ServiceCategoryMemoryRepository()
-    const locationDAO = new LocationMemoryRepository()
-    const createVendor = new CreateVendor(locationDAO, serviceCategoryDAO)
+    const serviceCategoryRepository = new ServiceCategoryMemoryRepository()
+    const locationRepository = new LocationMemoryRepository()
+    const vendorMemoryRepository = new VendorMemoryRepository()
+    const createVendor = new CreateVendor(locationRepository, serviceCategoryRepository, vendorMemoryRepository)
     const vendor = createVendor.execute(input)
     expect(vendor.id).toBeDefined()
     expect(vendor.name).toBe(input.name)

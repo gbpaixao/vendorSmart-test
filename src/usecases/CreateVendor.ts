@@ -1,5 +1,6 @@
 import { Vendor } from "../domain";
 import { LocationRepository, ServiceCategoryRepository } from "../resources";
+import { VendorRepository } from "../resources/VendorRepository";
 import { VendorServiceCategory } from "../types/VendorServiceCategory";
 
 type Input = {
@@ -10,15 +11,16 @@ type Input = {
 
 export class CreateVendor {
   constructor(
-    private readonly locationDAO: LocationRepository,
-    private readonly serviceCategoryDAO: ServiceCategoryRepository,
+    private readonly locationRepository: LocationRepository,
+    private readonly serviceCategoryRepository: ServiceCategoryRepository,
+    private readonly vendorRepository: VendorRepository,
   ) { }
 
   execute({ name, locationId, serviceCategories: serviceCategoriesInput }: Input) {
-    const location = this.locationDAO.findLocationById(locationId);
+    const location = this.locationRepository.findLocationById(locationId);
     if (!location) throw new Error('Location does not exist')
     const serviceCategories: VendorServiceCategory[] = serviceCategoriesInput.map((category) => {
-      const serviceCategory = this.serviceCategoryDAO.findServiceCategoryById(category.id)
+      const serviceCategory = this.serviceCategoryRepository.findServiceCategoryById(category.id)
       if (!serviceCategory) throw new Error('Service category does not exist')
       return {
         ...serviceCategory,
@@ -30,6 +32,7 @@ export class CreateVendor {
       location,
       serviceCategories
     })
+    this.vendorRepository.create(vendor)
     return vendor
   }
 }

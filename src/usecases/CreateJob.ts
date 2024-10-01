@@ -1,5 +1,6 @@
 import { Job } from "../domain";
 import { LocationRepository, ServiceCategoryRepository } from "../resources";
+import { JobRepository } from "../resources/JobRepository";
 
 type Input = {
   name: string
@@ -9,20 +10,22 @@ type Input = {
 
 export class CreateJob {
   constructor(
-    private readonly locationDAO: LocationRepository,
-    private readonly serviceCategoryDAO: ServiceCategoryRepository,
+    private readonly locationRepository: LocationRepository,
+    private readonly serviceCategoryRepository: ServiceCategoryRepository,
+    private readonly jobRepository: JobRepository,
   ) { }
 
   execute({ name, locationId, serviceCategoryId }: Input) {
-    const location = this.locationDAO.findLocationById(locationId);
+    const location = this.locationRepository.findLocationById(locationId);
     if (!location) throw new Error('Location does not exist')
-    const serviceCategory = this.serviceCategoryDAO.findServiceCategoryById(serviceCategoryId)
+    const serviceCategory = this.serviceCategoryRepository.findServiceCategoryById(serviceCategoryId)
     if (!serviceCategory) throw new Error('Service category does not exist')
     const job = new Job({
       name,
       location,
       serviceCategory
     })
+    this.jobRepository.create(job)
     return job
   }
 }

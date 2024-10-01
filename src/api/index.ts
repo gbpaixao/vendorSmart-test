@@ -1,7 +1,8 @@
 import express from "express";
 
-import { Job, Vendor } from "../domain";
 import { LocationMemoryRepository, ServiceCategoryMemoryRepository } from "../resources";
+import { JobMemoryRepository } from "../resources/JobRepository";
+import { VendorMemoryRepository } from "../resources/VendorRepository";
 import { CreateJob, CreateVendor } from "../usecases";
 import { AuthMiddleware } from "./middlewares/auth";
 
@@ -12,29 +13,24 @@ api.get('/', function (req, res) {
   res.send('API is running')
 })
 
-const serviceCategoryDAO = new ServiceCategoryMemoryRepository()
-const locationDAO = new LocationMemoryRepository()
-// persist that on a json or ts file;
-const jobs: Job[] = []
-const vendors: Vendor[] = []
+const serviceCategoryRepository = new ServiceCategoryMemoryRepository()
+const locationRepository = new LocationMemoryRepository()
+const jobMemoryRepository = new JobMemoryRepository()
+const vendorMemoryRepository = new VendorMemoryRepository()
 
 api.post('/create-job', AuthMiddleware, function (req, res) {
   const { name, locationId, serviceCategoryId } = req.body
   // error handling
-  const createJob = new CreateJob(locationDAO, serviceCategoryDAO)
+  const createJob = new CreateJob(locationRepository, serviceCategoryRepository, jobMemoryRepository)
   const job = createJob.execute({ name, locationId, serviceCategoryId })
-  jobs.push(job)
-  console.log('jobs', jobs)
   res.status(200).json(job)
 })
 
 api.post('/create-vendor', AuthMiddleware, function (req, res) {
   const { name, locationId, serviceCategories } = req.body
   // error handling
-  const createVendor = new CreateVendor(locationDAO, serviceCategoryDAO)
+  const createVendor = new CreateVendor(locationRepository, serviceCategoryRepository, vendorMemoryRepository)
   const vendor = createVendor.execute({ name, locationId, serviceCategories })
-  vendors.push(vendor)
-  console.log('vendors', vendors)
   res.status(200).json(vendor)
 })
 

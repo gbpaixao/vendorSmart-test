@@ -1,4 +1,4 @@
-import { LocationMemoryRepository, ServiceCategoryMemoryRepository } from "../../src/resources"
+import { JobMemoryRepository, LocationMemoryRepository, ServiceCategoryMemoryRepository } from "../../src/resources"
 import { CreateJob } from "../../src/usecases"
 
 describe('CreateJob usecase', () => {
@@ -8,9 +8,10 @@ describe('CreateJob usecase', () => {
       locationId: 1,
       serviceCategoryId: 2
     }
-    const serviceCategoryDAO = new ServiceCategoryMemoryRepository()
-    const locationDAO = new LocationMemoryRepository()
-    const createJob = new CreateJob(locationDAO, serviceCategoryDAO)
+    const serviceCategoryRepository = new ServiceCategoryMemoryRepository()
+    const locationRepository = new LocationMemoryRepository()
+    const jobMemoryRepository = new JobMemoryRepository()
+    const createJob = new CreateJob(locationRepository, serviceCategoryRepository, jobMemoryRepository)
     const job = createJob.execute(input)
     expect(job.id).toBeDefined()
     expect(job.name).toBe(input.name)
