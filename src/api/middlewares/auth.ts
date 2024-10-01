@@ -11,5 +11,4 @@ export function AuthMiddleware(req: Request, res: Response, next: NextFunction):
   }
 
   res.status(401).send('Authentication required')
-  next()
 }
