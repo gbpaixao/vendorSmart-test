@@ -1,6 +1,5 @@
 import { JobMemoryRepository, LocationMemoryRepository, ServiceCategoryMemoryRepository, VendorMemoryRepository } from "../../src/resources"
-import { CreateJob, CreateVendor } from "../../src/usecases"
-import { FindVendorsForJob } from "../../src/usecases/FindVendorsForJob"
+import { CreateJob, CreateVendor, FindVendorsForJob } from "../../src/usecases"
 import { getJobMockData, getVendorsMockData } from "../helpers"
 
 

@@ -1,12 +1,8 @@
 import express from "express";
 
 import { UUID } from "crypto";
-import { LocationMemoryRepository, ServiceCategoryMemoryRepository } from "../resources";
-import { JobJSONRepository } from "../resources/JobRepository";
-import { VendorJSONRepository } from "../resources/VendorRepository";
-import { CreateJob, CreateVendor } from "../usecases";
-import { FindVendorsForJob } from "../usecases/FindVendorsForJob";
-import { GetReachableVendors } from "../usecases/GetReachableVendors";
+import { JobJSONRepository, LocationMemoryRepository, ServiceCategoryMemoryRepository, VendorJSONRepository } from "../resources";
+import { CreateJob, CreateVendor, FindVendorsForJob, GetReachableVendors } from "../usecases";
 import { AuthMiddleware } from "./middlewares/auth";
 
 const api = express()

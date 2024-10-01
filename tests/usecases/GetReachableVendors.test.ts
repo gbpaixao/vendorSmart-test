@@ -1,6 +1,5 @@
 import { JobMemoryRepository, LocationMemoryRepository, ServiceCategoryMemoryRepository, VendorMemoryRepository } from "../../src/resources"
-import { CreateJob, CreateVendor } from "../../src/usecases"
-import { GetReachableVendors } from "../../src/usecases/GetReachableVendors"
+import { CreateJob, CreateVendor, GetReachableVendors } from "../../src/usecases"
 import { getJobMockData, getVendorsMockData } from "../helpers"
 
 describe('GetReachableVendors usecase', () => {
