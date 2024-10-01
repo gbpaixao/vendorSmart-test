@@ -4,6 +4,7 @@ import { LocationMemoryRepository, ServiceCategoryMemoryRepository } from "../re
 import { JobMemoryRepository } from "../resources/JobRepository";
 import { VendorMemoryRepository } from "../resources/VendorRepository";
 import { CreateJob, CreateVendor } from "../usecases";
+import { GetPublicInfo } from "../usecases/GetPublicInfo";
 import { AuthMiddleware } from "./middlewares/auth";
 
 const api = express()
@@ -32,6 +33,14 @@ api.post('/create-vendor', AuthMiddleware, function (req, res) {
   const createVendor = new CreateVendor(locationRepository, serviceCategoryRepository, vendorMemoryRepository)
   const vendor = createVendor.execute({ name, locationId, serviceCategories })
   res.status(200).json(vendor)
+})
+
+api.get('/get-reachable-vendors', function (req, res) {
+  const { locationId, serviceCategoryId } = req.query
+  // error handling
+  const getPublicInfo = new GetPublicInfo(vendorMemoryRepository)
+  const publicInfo = getPublicInfo.execute(Number(locationId), Number(serviceCategoryId))
+  res.status(200).json(publicInfo)
 })
 
 const PORT = 3000

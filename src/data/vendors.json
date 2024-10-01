@@ -94,37 +94,5 @@
         "compliant": true
       }
     ]
-  },
-  {
-    "id": "c4a40154-68b4-4f17-904a-6071a5de7432",
-    "name": "Vendor 1",
-    "location": {
-      "id": 1,
-      "name": "Glades",
-      "state": "FL"
-    },
-    "serviceCategories": [
-      {
-        "id": 1,
-        "name": "Access Control Software",
-        "compliant": true
-      }
-    ]
-  },
-  {
-    "id": "a06f1cf3-ee55-4f31-bb07-726c25f2ffd8",
-    "name": "Vendor 1",
-    "location": {
-      "id": 1,
-      "name": "Glades",
-      "state": "FL"
-    },
-    "serviceCategories": [
-      {
-        "id": 1,
-        "name": "Access Control Software",
-        "compliant": true
-      }
-    ]
   }
 ]
