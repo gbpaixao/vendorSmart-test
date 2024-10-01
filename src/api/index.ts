@@ -4,6 +4,7 @@ import { UUID } from "crypto";
 import { JobJSONRepository, LocationMemoryRepository, ServiceCategoryMemoryRepository, VendorJSONRepository } from "../resources";
 import { CreateJob, CreateVendor, FindVendorsForJob, GetReachableVendors } from "../usecases";
 import { AuthMiddleware } from "./middlewares/auth";
+import { errorHandling } from "./middlewares/error-handler";
 
 const api = express()
 api.use(express.json())
@@ -19,7 +20,6 @@ api.get('/', function (req, res) {
 
 api.post('/create-job', AuthMiddleware, function (req, res) {
   const { name, locationId, serviceCategoryId } = req.body
-  // error handling
   const createJob = new CreateJob(locationRepository, serviceCategoryRepository, jobRepository)
   const job = createJob.execute({ name, locationId, serviceCategoryId })
   res.status(200).json(job)
@@ -27,7 +27,6 @@ api.post('/create-job', AuthMiddleware, function (req, res) {
 
 api.post('/create-vendor', AuthMiddleware, function (req, res) {
   const { name, locationId, serviceCategories } = req.body
-  // error handling
   const createVendor = new CreateVendor(locationRepository, serviceCategoryRepository, vendorRepository)
   const vendor = createVendor.execute({ name, locationId, serviceCategories })
   res.status(200).json(vendor)
@@ -35,7 +34,6 @@ api.post('/create-vendor', AuthMiddleware, function (req, res) {
 
 api.get('/get-reachable-vendors', function (req, res) {
   const { locationId, serviceCategoryId } = req.query
-  // error handling
   const getReachableVendors = new GetReachableVendors(vendorRepository)
   const reachableVendors = getReachableVendors.execute({
     locationId: Number(locationId),
@@ -46,11 +44,12 @@ api.get('/get-reachable-vendors', function (req, res) {
 
 api.get('/find-vendors-for-job', AuthMiddleware, function (req, res) {
   const { jobId } = req.query
-  // error handling
   const findVendorsForJob = new FindVendorsForJob(jobRepository, vendorRepository)
   const vendors = findVendorsForJob.execute(jobId as UUID)
   res.status(200).json(vendors)
 })
+
+api.use(errorHandling);
 
 const PORT = 3000
 api.listen(PORT, () => {
