@@ -1,16 +1,10 @@
 import { LocationMemoryRepository, ServiceCategoryMemoryRepository, VendorMemoryRepository } from "../../src/resources"
 import { CreateVendor } from "../../src/usecases"
+import { getVendorsMockData } from "../helpers"
 
 describe('CreateVendor usecase', () => {
   test('Should create a new vendor', () => {
-    const input = {
-      name: 'Vendor 1',
-      locationId: 1,
-      serviceCategories: [{
-        id: 1,
-        compliant: true
-      }]
-    }
+    const input = getVendorsMockData()[0]
     const serviceCategoryRepository = new ServiceCategoryMemoryRepository()
     const locationRepository = new LocationMemoryRepository()
     const vendorRepository = new VendorMemoryRepository()

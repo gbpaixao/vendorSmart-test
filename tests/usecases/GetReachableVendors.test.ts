@@ -1,6 +1,7 @@
 import { JobMemoryRepository, LocationMemoryRepository, ServiceCategoryMemoryRepository, VendorMemoryRepository } from "../../src/resources"
 import { CreateJob, CreateVendor } from "../../src/usecases"
 import { GetReachableVendors } from "../../src/usecases/GetReachableVendors"
+import { getJobMockData, getVendorsMockData } from "../helpers"
 
 describe('GetReachableVendors usecase', () => {
   test('Should return base case when no vendor is reachable', () => {
@@ -17,37 +18,8 @@ describe('GetReachableVendors usecase', () => {
   })
 
   test('Should fetch reachable vendors for a job', () => {
-    const jobInput = {
-      name: 'Job 1',
-      locationId: 1,
-      serviceCategoryId: 2
-    }
-    const vendorInput = [
-      {
-        name: 'Vendor 1',
-        locationId: 1,
-        serviceCategories: [{
-          id: 1,
-          compliant: true
-        }]
-      },
-      {
-        name: 'Vendor 2',
-        locationId: 1,
-        serviceCategories: [{
-          id: 1,
-          compliant: false
-        }]
-      },
-      {
-        name: 'Vendor 3',
-        locationId: 1,
-        serviceCategories: [{
-          id: 1,
-          compliant: true
-        }]
-      }
-    ]
+    const jobInput = getJobMockData()
+    const vendorInput = getVendorsMockData()
     const serviceCategoryRepository = new ServiceCategoryMemoryRepository()
     const locationRepository = new LocationMemoryRepository()
     const jobRepository = new JobMemoryRepository()
@@ -64,7 +36,7 @@ describe('GetReachableVendors usecase', () => {
       serviceCategoryId: jobInput.serviceCategoryId
     })
     expect(reachableVendors.total).toBe(3)
-    expect(reachableVendors.compliant).toBe(2)
-    expect(reachableVendors.notCompliant).toBe(1)
+    expect(reachableVendors.compliant).toBe(1)
+    expect(reachableVendors.notCompliant).toBe(2)
   })
 })
