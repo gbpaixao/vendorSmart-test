@@ -1,11 +1,11 @@
-import { locations } from "../data/locations";
-import { Location } from "../domain/Location";
+import { locations } from "../data";
+import { Location } from "../domain";
 
-export interface LocationDAO {
+export interface LocationRepository {
   findLocationById: (id: number) => Location | undefined
 }
 
-export class LocationMemoryDAO implements LocationDAO {
+export class LocationMemoryRepository implements LocationRepository {
   locations: Location[]
 
   constructor() {

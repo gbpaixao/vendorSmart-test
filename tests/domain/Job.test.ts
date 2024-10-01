@@ -1,6 +1,4 @@
-import { Job } from "../../src/domain/Job"
-import { Location } from "../../src/domain/Location"
-import { ServiceCategory } from "../../src/domain/ServiceCategory"
+import { Job, Location, ServiceCategory } from "../../src/domain"
 
 describe('Job domain', () => {
   test('Should create a new job', () => {

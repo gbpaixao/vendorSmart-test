@@ -1,4 +1,4 @@
-import { ServiceCategory } from "../domain/ServiceCategory"
+import { ServiceCategory } from "../domain"
 
 export interface VendorServiceCategory extends ServiceCategory {
   compliant: boolean

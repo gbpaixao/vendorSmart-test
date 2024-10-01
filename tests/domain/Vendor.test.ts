@@ -1,6 +1,4 @@
-import { Location } from "../../src/domain/Location"
-import { ServiceCategory } from "../../src/domain/ServiceCategory"
-import { Vendor } from "../../src/domain/Vendor"
+import { Location, ServiceCategory, Vendor } from "../../src/domain"
 
 describe('Vendor domain', () => {
   test('Should create a new vendor', () => {

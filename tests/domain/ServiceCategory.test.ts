@@ -1,4 +1,4 @@
-import { ServiceCategory } from "../../src/domain/ServiceCategory"
+import { ServiceCategory } from "../../src/domain"
 
 describe('ServiceCategory domain', () => {
   test('Should create a new service category', () => {

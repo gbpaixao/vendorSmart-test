@@ -1,25 +1,23 @@
 import express from "express";
-import { Job } from "./domain/Job";
-import { Vendor } from "./domain/Vendor";
-import { LocationMemoryDAO } from "./resources/LocationDAO";
-import { ServiceCategoryMemoryDAO } from "./resources/ServiceCategoryDAO";
-import { CreateJob } from "./usecases/CreateJob";
-import { CreateVendor } from "./usecases/CreateVendor";
 
-const app = express()
-app.use(express.json())
+import { Job, Vendor } from "../domain";
+import { LocationMemoryRepository, ServiceCategoryMemoryRepository } from "../resources";
+import { CreateJob, CreateVendor } from "../usecases";
 
-app.get('/', function (req, res) {
+const api = express()
+api.use(express.json())
+
+api.get('/', function (req, res) {
   res.send('API is running')
 })
 
-const serviceCategoryDAO = new ServiceCategoryMemoryDAO()
-const locationDAO = new LocationMemoryDAO()
+const serviceCategoryDAO = new ServiceCategoryMemoryRepository()
+const locationDAO = new LocationMemoryRepository()
 // persist that on a json or ts file;
 const jobs: Job[] = []
 const vendors: Vendor[] = []
 
-app.post('/create-job', function (req, res) {
+api.post('/create-job', function (req, res) {
   const { name, locationId, serviceCategoryId } = req.body
   // error handling
   const createJob = new CreateJob(locationDAO, serviceCategoryDAO)
@@ -29,7 +27,7 @@ app.post('/create-job', function (req, res) {
   res.status(200).json(job)
 })
 
-app.post('/create-vendor', function (req, res) {
+api.post('/create-vendor', function (req, res) {
   const { name, locationId, serviceCategories } = req.body
   // error handling
   const createVendor = new CreateVendor(locationDAO, serviceCategoryDAO)
@@ -40,6 +38,8 @@ app.post('/create-vendor', function (req, res) {
 })
 
 const PORT = 3000
-app.listen(PORT, () => {
+api.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`)
 })
+
+export default api

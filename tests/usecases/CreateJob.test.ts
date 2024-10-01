@@ -1,6 +1,5 @@
-import { LocationMemoryDAO } from "../../src/resources/LocationDAO"
-import { ServiceCategoryMemoryDAO } from "../../src/resources/ServiceCategoryDAO"
-import { CreateJob } from "../../src/usecases/CreateJob"
+import { LocationMemoryRepository, ServiceCategoryMemoryRepository } from "../../src/resources"
+import { CreateJob } from "../../src/usecases"
 
 describe('CreateJob usecase', () => {
   test('Should create a new job', () => {
@@ -9,8 +8,8 @@ describe('CreateJob usecase', () => {
       locationId: 1,
       serviceCategoryId: 2
     }
-    const serviceCategoryDAO = new ServiceCategoryMemoryDAO()
-    const locationDAO = new LocationMemoryDAO()
+    const serviceCategoryDAO = new ServiceCategoryMemoryRepository()
+    const locationDAO = new LocationMemoryRepository()
     const createJob = new CreateJob(locationDAO, serviceCategoryDAO)
     const job = createJob.execute(input)
     expect(job.id).toBeDefined()

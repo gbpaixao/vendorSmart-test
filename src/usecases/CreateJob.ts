@@ -1,6 +1,5 @@
-import { Job } from "../domain/Job";
-import { LocationDAO } from "../resources/LocationDAO";
-import { ServiceCategoryDAO } from "../resources/ServiceCategoryDAO";
+import { Job } from "../domain";
+import { LocationRepository, ServiceCategoryRepository } from "../resources";
 
 type Input = {
   name: string
@@ -10,8 +9,8 @@ type Input = {
 
 export class CreateJob {
   constructor(
-    private readonly locationDAO: LocationDAO,
-    private readonly serviceCategoryDAO: ServiceCategoryDAO,
+    private readonly locationDAO: LocationRepository,
+    private readonly serviceCategoryDAO: ServiceCategoryRepository,
   ) { }
 
   execute({ name, locationId, serviceCategoryId }: Input) {

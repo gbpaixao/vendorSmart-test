@@ -1,6 +1,6 @@
 import { randomUUID, UUID } from "crypto";
+import { Location } from ".";
 import { VendorServiceCategory } from "../types/VendorServiceCategory";
-import { Location } from "./Location";
 
 type VendorInput = {
   serviceCategories: VendorServiceCategory[]

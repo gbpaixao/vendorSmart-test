@@ -1,12 +1,11 @@
+import { serviceCategories } from "../data";
+import { ServiceCategory } from "../domain";
 
-import { serviceCategories } from "../data/serviceCategories";
-import { ServiceCategory } from "../domain/ServiceCategory";
-
-export interface ServiceCategoryDAO {
+export interface ServiceCategoryRepository {
   findServiceCategoryById: (id: number) => ServiceCategory | undefined
 }
 
-export class ServiceCategoryMemoryDAO implements ServiceCategoryDAO {
+export class ServiceCategoryMemoryRepository implements ServiceCategoryRepository {
   serviceCategories: ServiceCategory[]
 
   constructor() {

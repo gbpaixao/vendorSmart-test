@@ -1,6 +1,6 @@
 import { randomUUID, UUID } from "crypto";
+import { ServiceCategory } from ".";
 import { Location } from "./Location";
-import { ServiceCategory } from "./ServiceCategory";
 
 type JobInput = {
   serviceCategory: ServiceCategory

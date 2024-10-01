@@ -1,6 +1,5 @@
-import { Vendor } from "../domain/Vendor";
-import { LocationDAO } from "../resources/LocationDAO";
-import { ServiceCategoryDAO } from "../resources/ServiceCategoryDAO";
+import { Vendor } from "../domain";
+import { LocationRepository, ServiceCategoryRepository } from "../resources";
 import { VendorServiceCategory } from "../types/VendorServiceCategory";
 
 type Input = {
@@ -11,8 +10,8 @@ type Input = {
 
 export class CreateVendor {
   constructor(
-    private readonly locationDAO: LocationDAO,
-    private readonly serviceCategoryDAO: ServiceCategoryDAO,
+    private readonly locationDAO: LocationRepository,
+    private readonly serviceCategoryDAO: ServiceCategoryRepository,
   ) { }
 
   execute({ name, locationId, serviceCategories: serviceCategoriesInput }: Input) {

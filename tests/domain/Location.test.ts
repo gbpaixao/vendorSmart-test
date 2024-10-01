@@ -1,4 +1,4 @@
-import { Location } from "../../src/domain/Location"
+import { Location } from "../../src/domain"
 
 describe('Location domain', () => {
   test('Should create a new location', () => {
