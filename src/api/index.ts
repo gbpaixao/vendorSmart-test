@@ -3,6 +3,7 @@ import express from "express";
 import { Job, Vendor } from "../domain";
 import { LocationMemoryRepository, ServiceCategoryMemoryRepository } from "../resources";
 import { CreateJob, CreateVendor } from "../usecases";
+import { AuthMiddleware } from "./middlewares/auth";
 
 const api = express()
 api.use(express.json())
@@ -17,7 +18,7 @@ const locationDAO = new LocationMemoryRepository()
 const jobs: Job[] = []
 const vendors: Vendor[] = []
 
-api.post('/create-job', function (req, res) {
+api.post('/create-job', AuthMiddleware, function (req, res) {
   const { name, locationId, serviceCategoryId } = req.body
   // error handling
   const createJob = new CreateJob(locationDAO, serviceCategoryDAO)
@@ -27,7 +28,7 @@ api.post('/create-job', function (req, res) {
   res.status(200).json(job)
 })
 
-api.post('/create-vendor', function (req, res) {
+api.post('/create-vendor', AuthMiddleware, function (req, res) {
   const { name, locationId, serviceCategories } = req.body
   // error handling
   const createVendor = new CreateVendor(locationDAO, serviceCategoryDAO)
