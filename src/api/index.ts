@@ -8,14 +8,14 @@ import { AuthMiddleware } from "./middlewares/auth";
 const api = express()
 api.use(express.json())
 
-api.get('/', function (req, res) {
-  res.send('API is running')
-})
-
 const serviceCategoryRepository = new ServiceCategoryMemoryRepository()
 const locationRepository = new LocationMemoryRepository()
 const jobRepository = new JobJSONRepository()
 const vendorRepository = new VendorJSONRepository()
+
+api.get('/', function (req, res) {
+  res.send('API is running')
+})
 
 api.post('/create-job', AuthMiddleware, function (req, res) {
   const { name, locationId, serviceCategoryId } = req.body
@@ -51,8 +51,6 @@ api.get('/find-vendors-for-job', AuthMiddleware, function (req, res) {
   const vendors = findVendorsForJob.execute(jobId as UUID)
   res.status(200).json(vendors)
 })
-
-
 
 const PORT = 3000
 api.listen(PORT, () => {
