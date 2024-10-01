@@ -31,7 +31,7 @@ export class VendorJSONRepository implements VendorRepository {
   filterBy({ serviceCategoryId, locationId }: Filter): Vendor[] | undefined {
     return this.vendors
       .filter(vendor => vendor.location.id === locationId)
-      .filter((vendor) => vendor.serviceCategories.filter(category => category.id === serviceCategoryId))
+      .filter(vendor => vendor.serviceCategories.some(category => category.id === serviceCategoryId))
   }
 }
 
@@ -50,6 +50,6 @@ export class VendorMemoryRepository implements VendorRepository {
   filterBy({ serviceCategoryId, locationId }: Filter): Vendor[] | undefined {
     return this.vendors
       .filter(vendor => vendor.location.id === locationId)
-      .filter((vendor) => vendor.serviceCategories.filter(category => category.id === serviceCategoryId))
+      .filter((vendor) => vendor.serviceCategories.some(category => category.id === serviceCategoryId))
   }
 }
