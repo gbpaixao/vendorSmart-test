@@ -1,10 +1,10 @@
 import express from "express";
 
 import { LocationMemoryRepository, ServiceCategoryMemoryRepository } from "../resources";
-import { JobMemoryRepository } from "../resources/JobRepository";
-import { VendorMemoryRepository } from "../resources/VendorRepository";
+import { JobJSONRepository } from "../resources/JobRepository";
+import { VendorJSONRepository } from "../resources/VendorRepository";
 import { CreateJob, CreateVendor } from "../usecases";
-import { GetPublicInfo } from "../usecases/GetPublicInfo";
+import { GetReachableVendors } from "../usecases/GetReachableVendors";
 import { AuthMiddleware } from "./middlewares/auth";
 
 const api = express()
@@ -16,8 +16,8 @@ api.get('/', function (req, res) {
 
 const serviceCategoryRepository = new ServiceCategoryMemoryRepository()
 const locationRepository = new LocationMemoryRepository()
-const jobMemoryRepository = new JobMemoryRepository()
-const vendorMemoryRepository = new VendorMemoryRepository()
+const jobMemoryRepository = new JobJSONRepository()
+const vendorMemoryRepository = new VendorJSONRepository()
 
 api.post('/create-job', AuthMiddleware, function (req, res) {
   const { name, locationId, serviceCategoryId } = req.body
@@ -38,9 +38,12 @@ api.post('/create-vendor', AuthMiddleware, function (req, res) {
 api.get('/get-reachable-vendors', function (req, res) {
   const { locationId, serviceCategoryId } = req.query
   // error handling
-  const getPublicInfo = new GetPublicInfo(vendorMemoryRepository)
-  const publicInfo = getPublicInfo.execute(Number(locationId), Number(serviceCategoryId))
-  res.status(200).json(publicInfo)
+  const getReachableVendors = new GetReachableVendors(vendorMemoryRepository)
+  const reachableVendors = getReachableVendors.execute({
+    locationId: Number(locationId),
+    serviceCategoryId: Number(serviceCategoryId)
+  })
+  res.status(200).json(reachableVendors)
 })
 
 const PORT = 3000

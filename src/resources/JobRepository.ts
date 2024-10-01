@@ -7,7 +7,7 @@ export interface JobRepository {
   create: (job: Job) => void
 }
 
-export class JobMemoryRepository implements JobRepository {
+export class JobJSONRepository implements JobRepository {
   fileSystem = new FileSystemDAO<Job>('src/data/jobs.json')
   jobs: Job[] = this.fileSystem.load();
 
@@ -20,5 +20,19 @@ export class JobMemoryRepository implements JobRepository {
   create(job: Job): void {
     this.jobs.push(job);
     this.fileSystem.save(this.jobs);
+  }
+}
+
+export class JobMemoryRepository implements JobRepository {
+  jobs: Job[] = []
+
+  constructor() { }
+
+  findById(id: UUID): Job | undefined {
+    return this.jobs.find(job => job.id === id);
+  }
+
+  create(job: Job): void {
+    this.jobs.push(job);
   }
 }

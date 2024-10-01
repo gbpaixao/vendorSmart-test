@@ -10,8 +10,8 @@ describe('CreateJob usecase', () => {
     }
     const serviceCategoryRepository = new ServiceCategoryMemoryRepository()
     const locationRepository = new LocationMemoryRepository()
-    const jobMemoryRepository = new JobMemoryRepository()
-    const createJob = new CreateJob(locationRepository, serviceCategoryRepository, jobMemoryRepository)
+    const jobRepository = new JobMemoryRepository()
+    const createJob = new CreateJob(locationRepository, serviceCategoryRepository, jobRepository)
     const job = createJob.execute(input)
     expect(job.id).toBeDefined()
     expect(job.name).toBe(input.name)

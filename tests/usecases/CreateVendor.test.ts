@@ -13,8 +13,8 @@ describe('CreateVendor usecase', () => {
     }
     const serviceCategoryRepository = new ServiceCategoryMemoryRepository()
     const locationRepository = new LocationMemoryRepository()
-    const vendorMemoryRepository = new VendorMemoryRepository()
-    const createVendor = new CreateVendor(locationRepository, serviceCategoryRepository, vendorMemoryRepository)
+    const vendorRepository = new VendorMemoryRepository()
+    const createVendor = new CreateVendor(locationRepository, serviceCategoryRepository, vendorRepository)
     const vendor = createVendor.execute(input)
     expect(vendor.id).toBeDefined()
     expect(vendor.name).toBe(input.name)

@@ -3,7 +3,7 @@ import { FileSystemDAO } from '.';
 import { Vendor } from "../domain";
 
 type Filter = {
-  categoryId: number
+  serviceCategoryId: number
   locationId: number
 }
 
@@ -13,7 +13,7 @@ export interface VendorRepository {
   create: (vendor: Vendor) => void
 }
 
-export class VendorMemoryRepository implements VendorRepository {
+export class VendorJSONRepository implements VendorRepository {
   fileSystem = new FileSystemDAO<Vendor>('src/data/vendors.json')
   vendors: Vendor[] = this.fileSystem.load();
 
@@ -28,9 +28,28 @@ export class VendorMemoryRepository implements VendorRepository {
     this.fileSystem.save(this.vendors);
   }
 
-  filterBy({ categoryId, locationId }: Filter): Vendor[] | undefined {
+  filterBy({ serviceCategoryId, locationId }: Filter): Vendor[] | undefined {
     return this.vendors
       .filter(vendor => vendor.location.id === locationId)
-      .filter((vendor) => vendor.serviceCategories.filter(category => category.id === categoryId))
+      .filter((vendor) => vendor.serviceCategories.filter(category => category.id === serviceCategoryId))
+  }
+}
+
+export class VendorMemoryRepository implements VendorRepository {
+  vendors: Vendor[] = []
+  constructor() { }
+
+  findById(id: UUID): Vendor | undefined {
+    return this.vendors.find(vendor => vendor.id === id);
+  }
+
+  create(vendor: Vendor): void {
+    this.vendors.push(vendor);
+  }
+
+  filterBy({ serviceCategoryId, locationId }: Filter): Vendor[] | undefined {
+    return this.vendors
+      .filter(vendor => vendor.location.id === locationId)
+      .filter((vendor) => vendor.serviceCategories.filter(category => category.id === serviceCategoryId))
   }
 }
