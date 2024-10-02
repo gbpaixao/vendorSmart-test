@@ -1,4 +1,4 @@
-# Mini-Rutter
+# VendorSmart
 
 An API to connect Vendors and Jobs.
 
@@ -98,13 +98,12 @@ Endpoint: `http://localhost:3000/create-vendor`
   }]
 }
 ```
-An authenticated endpoint to create a vendor;
+An authenticated endpoint to create a vendor.
 
 ### Find Vendors For Job (authenticated)
 Endpoint: `http://localhost:3000/find-vendors-for-job?jobId={jobId}`
 
-An authenticated endpoint that returns the potential vendors for a given job;
-
+An authenticated endpoint that returns the potential vendors for a given job. Compliant vendors should appear first.
 
 ### Find Reachable Vendors 
 Endpoint: `http://localhost:3000/get-reachable-vendors?locationId={locationId}&serviceCategoryId={serviceCategoryId}`
