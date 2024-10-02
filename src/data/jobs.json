@@ -1,6 +1,6 @@
 [
   {
-    "id": "b98dffc2-0c21-4366-b8cf-4de8f61e6866",
+    "id": "d32c04fb-9279-4821-b875-6ece7c51188d",
     "name": "job 1",
     "location": {
       "id": 10,
@@ -13,7 +13,7 @@
     }
   },
   {
-    "id": "e0ba13ab-666e-4dd8-8267-48016fc3d815",
+    "id": "26341eec-5d08-412d-9b4b-f98dc217e53d",
     "name": "job 2",
     "location": {
       "id": 10,
@@ -26,34 +26,8 @@
     }
   },
   {
-    "id": "bd5a56c0-ebb2-4465-9119-aeed9f6733f3",
+    "id": "313dff9b-85ec-4871-bd59-2a9eb5e0da13",
     "name": "job 3",
-    "location": {
-      "id": 1,
-      "name": "Glades",
-      "state": "FL"
-    },
-    "serviceCategory": {
-      "id": 2,
-      "name": "Air Conditioning"
-    }
-  },
-  {
-    "id": "ed3e06ee-b2e3-4145-b23f-4e6c75a28996",
-    "name": "Job 1",
-    "location": {
-      "id": 1,
-      "name": "Glades",
-      "state": "FL"
-    },
-    "serviceCategory": {
-      "id": 2,
-      "name": "Air Conditioning"
-    }
-  },
-  {
-    "id": "e20ee353-69a4-482c-87bf-e863b1fb076b",
-    "name": "Job 1",
     "location": {
       "id": 1,
       "name": "Glades",

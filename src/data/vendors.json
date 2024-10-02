@@ -1,6 +1,6 @@
 [
   {
-    "id": "8d345919-045d-4013-a9f8-9386701c1274",
+    "id": "258f8e45-c5e3-4a3d-b2f1-c9751d49517d",
     "name": "vendor 1",
     "location": {
       "id": 10,
@@ -21,7 +21,7 @@
     ]
   },
   {
-    "id": "58f427d9-ae21-4476-833e-22b08e4f6f92",
+    "id": "b5a75996-5875-47f1-ba61-736a01ba36a7",
     "name": "vendor 2",
     "location": {
       "id": 10,
@@ -37,7 +37,7 @@
     ]
   },
   {
-    "id": "8cbe867b-99d8-4844-98a2-c36f822ce96b",
+    "id": "03a6492c-ab55-486c-8a5a-78a7f7042dfb",
     "name": "vendor 3",
     "location": {
       "id": 10,
@@ -53,7 +53,7 @@
     ]
   },
   {
-    "id": "3e6ed3af-023d-42db-9ac5-401c72d0f291",
+    "id": "35e42a56-36ab-4134-90c5-2674483e6a75",
     "name": "vendor 4",
     "location": {
       "id": 1,
@@ -69,7 +69,7 @@
     ]
   },
   {
-    "id": "a8642fbb-a1f9-4916-852a-f477f7dbe4ab",
+    "id": "65aa25b6-11ed-4ba1-86cd-9f0289febe56",
     "name": "vendor 5",
     "location": {
       "id": 1,
@@ -85,7 +85,7 @@
     ]
   },
   {
-    "id": "28c336a4-4426-4b26-8b47-4a1ce92e5c7f",
+    "id": "5896112d-62f8-4ca6-a858-d37365e305d7",
     "name": "vendor 6",
     "location": {
       "id": 1,
