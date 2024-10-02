@@ -1,0 +1,482 @@
+{
+	"info": {
+		"_postman_id": "f181f5b8-e294-4135-bead-aa88179ea3d6",
+		"name": "vendorSmart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37685175"
+	},
+	"item": [
+		{
+			"name": "health-check",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getReachableVendors",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/get-reachable-vendors?locationId=10&serviceCategoryId=2",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"get-reachable-vendors"
+					],
+					"query": [
+						{
+							"key": "locationId",
+							"value": "10"
+						},
+						{
+							"key": "serviceCategoryId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findVendorsForJob",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{auth_user}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{auth_password}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/find-vendors-for-job?jobId=26341eec-5d08-412d-9b4b-f98dc217e53d",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"find-vendors-for-job"
+					],
+					"query": [
+						{
+							"key": "jobId",
+							"value": "26341eec-5d08-412d-9b4b-f98dc217e53d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createJob",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{auth_user}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{auth_password}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"job 1\",\r\n    \"locationId\": 10,\r\n    \"serviceCategoryId\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/create-job",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"create-job"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "createJob-1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"job 1\",\r\n    \"locationId\": 10,\r\n    \"serviceCategoryId\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/create-job",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"create-job"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "createJob-2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"job 2\",\r\n    \"locationId\": 10,\r\n    \"serviceCategoryId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/create-job",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"create-job"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "createJob-3",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"job 3\",\r\n    \"locationId\": 1,\r\n    \"serviceCategoryId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/create-job",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"create-job"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "createVendor",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{auth_user}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{auth_password}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"vendor 1\",\r\n    \"locationId\": 10,\r\n    \"serviceCategories\": [{\r\n        \"id\": 4,\r\n        \"compliant\": true\r\n    }]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/create-vendor",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"create-vendor"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "createVendor-1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"vendor 1\",\r\n    \"locationId\": 10,\r\n    \"serviceCategories\": [\r\n        {\r\n            \"id\": 4,\r\n            \"compliant\": false\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"compliant\": false\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/create-vendor",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"create-vendor"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "createVendor-2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"vendor 2\",\r\n    \"locationId\": 10,\r\n    \"serviceCategories\": [{\r\n        \"id\": 2,\r\n        \"compliant\": false\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/create-vendor",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"create-vendor"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "createVendor-3",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"vendor 3\",\r\n    \"locationId\": 10,\r\n    \"serviceCategories\": [{\r\n        \"id\": 2,\r\n        \"compliant\": true\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/create-vendor",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"create-vendor"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "createVendor-4",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"vendor 4\",\r\n    \"locationId\": 1,\r\n    \"serviceCategories\": [{\r\n        \"id\": 4,\r\n        \"compliant\": true\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/create-vendor",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"create-vendor"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "createVendor-5",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"vendor 5\",\r\n    \"locationId\": 1,\r\n    \"serviceCategories\": [{\r\n        \"id\": 2,\r\n        \"compliant\": false\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/create-vendor",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"create-vendor"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "createVendor-6",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"vendor 6\",\r\n    \"locationId\": 1,\r\n    \"serviceCategories\": [{\r\n        \"id\": 2,\r\n        \"compliant\": true\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/create-vendor",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"create-vendor"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "auth_user",
+			"value": "vs_tech_challenge",
+			"type": "string"
+		},
+		{
+			"key": "auth_password",
+			"value": "SuperSecurePassword123@",
+			"type": "string"
+		}
+	]
+}
